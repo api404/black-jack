@@ -34,10 +34,10 @@ describe('Deck', () => {
 
         it('does not return an excluded cards', () => {
             const cardsToExclude = [
-                new Card('hearts', 'Q'),
-                new Card('hearts', '5'),
-                new Card('clubs', 'A'),
-                new Card('diamonds', '9'),
+                Card.fromString('Q♥'),
+                Card.fromString('5♥'),
+                Card.fromString('A♣'),
+                Card.fromString('9♦'),
             ];
             const deck = new Deck({cardsToExclude});
             while(deck.getSize()>0) {

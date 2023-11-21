@@ -1,3 +1,9 @@
+
+
+# Black Jack
+
+The game is based on rules from this article: https://www.pinnacle.com/en/betting-articles/casino/how-to-play-blackjack/apn24f8ark6vlkzn
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
