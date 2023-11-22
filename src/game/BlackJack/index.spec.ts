@@ -1,4 +1,4 @@
-import {BlackJackGameState, ResultType} from "@/game/BlackJack/types";
+import {ActionType, BlackJackGameState, ResultType} from "@/game/BlackJack/types";
 import {Card} from "@/game/Card";
 import {BlackJackGame} from "@/game/BlackJack/index";
 import {Deck} from "../Deck";
@@ -14,7 +14,7 @@ type BlackJackGameTest = {
 } & ({
     gameStage: 'createNewGame',
 } | {
-    gameStage: 'stand' | 'hit',
+    gameStage: ActionType,
     state: BlackJackGameState,
 })
 describe('BlackJackGame', () => {
