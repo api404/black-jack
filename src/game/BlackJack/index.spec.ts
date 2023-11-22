@@ -50,8 +50,11 @@ describe('BlackJackGame', () => {
         },
         {
             gameStage: 'createNewGame',
-            name: 'If the dealer gets Blackjack and the player does not, the dealer wins',
+            name: 'If the dealer gets Blackjack and the player does not, the dealer wins and shows all cards',
             expectedResult: 'dealer wins',
+            additionalChecks: (result) => {
+                expect(result.dealerOpenCards.length).toBe(2);
+            },
             cardsOnTheTopOfTheDeck: [
                 Card.fromString('9♦'),
                 Card.fromString('2♥'),
@@ -277,7 +280,6 @@ describe('BlackJackGame', () => {
                 result: null
             }
         },
-
     ]
     tests.forEach(({cardsOnTheTopOfTheDeck, name, expectedResult, additionalChecks, ...rest}) => {
         it(`${rest.gameStage}: ${name}`, () => {

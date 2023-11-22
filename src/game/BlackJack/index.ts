@@ -1,9 +1,9 @@
 import {Card} from "@/game/Card";
 import {Deck} from "@/game/Deck";
-import {BlackJackGameState, ResultType, Score} from "@/game/BlackJack/types";
-
-const DEALER_MIN_SCORE = 17;
-const WINNING_SCORE = 21;
+import {ActionType, BlackJackGameState, ResultType, Score, DEALER_MIN_SCORE, WINNING_SCORE} from "@/game/BlackJack/types";
+import {getCardValues} from "@/game/BlackJack/helpers/getCardValues";
+import {isBlackJack} from "@/game/BlackJack/helpers/isBlackJack";
+import {findBestScore} from "@/game/BlackJack/helpers/findBestScore";
 
 export class BlackJackGame {
     static createNewGame (): BlackJackGameState {
@@ -16,14 +16,14 @@ export class BlackJackGame {
         const result = BlackJackGame.calculateResult({playerScore, dealerScore, isGameFinished: false});
         return {
             playerCards,
-            dealerOpenCards,
+            dealerOpenCards: result? [...dealerOpenCards, dealerHiddenCard]: dealerOpenCards,
             dealerHiddenCard,
             playerScore,
             dealerScore,
             result
         }
     }
-    static play(currentState: BlackJackGameState, action: 'hit' | 'stand'): BlackJackGameState {
+    static play(currentState: BlackJackGameState, action: ActionType): BlackJackGameState {
         const deck = new Deck({ cardsToExclude: [
                 ...currentState.dealerOpenCards,
                 currentState.dealerHiddenCard,
@@ -92,53 +92,5 @@ export class BlackJackGame {
             return accu;
         }, [0])
         return findBestScore(potentialScores, isDealer);
-    }
-}
-
-// TODO:
-const findBestScore = (scores: number[], isDealer: boolean) => {
-    return scores.reduce((bestScore: number, score: number) => {
-        if (bestScore === 0) {
-            return score;
-        }
-        if (score === WINNING_SCORE) {
-            return score;
-        }
-        if (score > WINNING_SCORE && bestScore < WINNING_SCORE) {
-            return bestScore;
-        }
-        if (score < WINNING_SCORE && bestScore > WINNING_SCORE) {
-            return score;
-        }
-        if (score < WINNING_SCORE && bestScore < WINNING_SCORE) {
-            if (isDealer) {
-                if (bestScore >= DEALER_MIN_SCORE && score < DEALER_MIN_SCORE) {
-                    return score
-                }
-                if (bestScore < DEALER_MIN_SCORE && score >= DEALER_MIN_SCORE) {
-                    return bestScore
-                }
-            }
-            return Math.max(bestScore, score);
-        }
-        if (score > WINNING_SCORE && bestScore > WINNING_SCORE) {
-            return Math.min(bestScore, score);
-        }
-        return bestScore;
-    }, 0);
-}
-
-const isBlackJack = (cards: Card[]) => {
-    return cards.length === 2
-        && cards.some((card)=> card.value === 'A')
-        && cards.some((card)=> ['Q', 'K', 'J','10'].includes(card.value));
-}
-const getCardValues = (card: Card) => {
-    switch (card.value) {
-        case 'Q':
-        case 'K':
-        case 'J':return [10];
-        case 'A':return [1,11]
-        default: return [Number(card.value)]
     }
 }
