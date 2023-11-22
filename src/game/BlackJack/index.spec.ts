@@ -1,12 +1,9 @@
-import {
-  ActionType,
-  BlackJackGameState,
-  ResultType,
-} from "@/game/BlackJack/types";
+import { ActionType, ResultType } from "@/game/BlackJack/types";
 import { Card } from "@/game/Card";
 import { BlackJackGame } from "@/game/BlackJack/index";
 import { Deck } from "../Deck";
 import { jest } from "@jest/globals";
+import { PrivateGameState } from "@/app/schemas/privateGameState";
 
 jest.mock("../Deck");
 
@@ -14,14 +11,14 @@ type BlackJackGameTest = {
   cardsOnTheTopOfTheDeck: Card[];
   expectedResult: ResultType;
   name: string;
-  additionalChecks?: (result: BlackJackGameState) => void;
+  additionalChecks?: (result: PrivateGameState) => void;
 } & (
   | {
       gameStage: "createNewGame";
     }
   | {
       gameStage: ActionType;
-      state: BlackJackGameState;
+      state: PrivateGameState;
     }
 );
 describe("BlackJackGame", () => {

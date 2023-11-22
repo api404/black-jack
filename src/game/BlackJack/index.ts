@@ -2,7 +2,6 @@ import { Card } from "@/game/Card";
 import { Deck } from "@/game/Deck";
 import {
   ActionType,
-  BlackJackGameState,
   ResultType,
   Score,
   DEALER_MIN_SCORE,
@@ -11,9 +10,10 @@ import {
 import { getCardValues } from "@/game/BlackJack/helpers/getCardValues";
 import { isBlackJack } from "@/game/BlackJack/helpers/isBlackJack";
 import { findBestScore } from "@/game/BlackJack/helpers/findBestScore";
+import { PrivateGameState } from "@/app/schemas/privateGameState";
 
 export class BlackJackGame {
-  static createNewGame(): BlackJackGameState {
+  static createNewGame(): PrivateGameState {
     const deck = new Deck();
     const playerCards = [deck.draw(), deck.draw()];
     const dealerOpenCards = [deck.draw()];
@@ -40,9 +40,9 @@ export class BlackJackGame {
     };
   }
   static play(
-    currentState: BlackJackGameState,
+    currentState: PrivateGameState,
     action: ActionType,
-  ): BlackJackGameState {
+  ): PrivateGameState {
     const deck = new Deck({
       cardsToExclude: [
         ...currentState.dealerOpenCards,
@@ -71,7 +71,7 @@ export class BlackJackGame {
     return newState;
   }
 
-  private static playDealerTurn(state: BlackJackGameState, deck: Deck) {
+  private static playDealerTurn(state: PrivateGameState, deck: Deck) {
     const newState = { ...state };
     newState.dealerOpenCards.push(newState.dealerHiddenCard);
     while (
@@ -96,7 +96,7 @@ export class BlackJackGame {
     playerScore,
     dealerScore,
     isGameFinished,
-  }: Pick<BlackJackGameState, "playerScore" | "dealerScore"> & {
+  }: Pick<PrivateGameState, "playerScore" | "dealerScore"> & {
     isGameFinished: boolean;
   }): ResultType {
     if (playerScore === dealerScore) return "push";

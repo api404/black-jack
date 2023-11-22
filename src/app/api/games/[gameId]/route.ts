@@ -1,12 +1,11 @@
-import { kv } from "@vercel/kv";
-import { BlackJackGameState } from "@/game/BlackJack/types";
 import { getPublicGameState } from "@/app/api/games/_helpers/getPublicGameState";
+import { getGameState } from "@/services/gamesStore";
 
-export async function GET(
+export const GET = async (
   request: Request,
   { params: { gameId } }: { params: { gameId: string } },
-) {
-  const gameState = await kv.get<BlackJackGameState>(gameId);
+) => {
+  const gameState = await getGameState(gameId);
   if (!gameState)
     return Response.json(
       {
@@ -18,4 +17,4 @@ export async function GET(
     );
 
   return Response.json(getPublicGameState(gameId, gameState));
-}
+};

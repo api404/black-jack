@@ -1,12 +1,7 @@
 import { BlackJackGame } from "@/game/BlackJack";
-import { v4 as uuid } from "uuid";
-import { kv } from "@vercel/kv";
 import { getPublicGameState } from "@/app/api/games/_helpers/getPublicGameState";
-import {
-  actionTypes,
-  BlackJackGameState,
-  isActionType,
-} from "@/game/BlackJack/types";
+import { isActionType } from "@/game/BlackJack/types";
+import { getGameState, saveGameState } from "@/services/gamesStore";
 
 export async function POST(
   request: Request,
@@ -14,7 +9,7 @@ export async function POST(
     params: { gameId, action },
   }: { params: { gameId: string; action: string } },
 ) {
-  const gameState = await kv.get<BlackJackGameState>(gameId);
+  const gameState = await getGameState(gameId);
   if (!gameState)
     return Response.json(
       {
@@ -32,7 +27,7 @@ export async function POST(
   }
 
   const newGameState = BlackJackGame.play(gameState, action);
-  await kv.set(gameId, newGameState);
+  await saveGameState(gameId, gameState);
 
   return Response.json(getPublicGameState(gameId, newGameState));
 }

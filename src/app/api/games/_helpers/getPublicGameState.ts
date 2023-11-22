@@ -1,14 +1,22 @@
-import { BlackJackGameState } from "@/game/BlackJack/types";
+import { PublicGameState } from "@/app/schemas/publicGameState";
+import { PrivateGameState } from "@/app/schemas/privateGameState";
 
-export type PublicGameState = { gameId: string } & Pick<
-  BlackJackGameState,
-  "playerScore" | "playerCards" | "dealerOpenCards" | "result"
->;
-
-//TODO: add dealer score
 export const getPublicGameState = (
   gameId: string,
-  { playerCards, playerScore, dealerOpenCards, result }: BlackJackGameState,
+  {
+    playerCards,
+    playerScore,
+    dealerOpenCards,
+    dealerScore,
+    result,
+  }: PrivateGameState,
 ): PublicGameState => {
-  return { gameId, playerScore, playerCards, dealerOpenCards, result };
+  return {
+    gameId,
+    playerScore,
+    playerCards,
+    dealerOpenCards,
+    ...(result ? { dealerScore } : {}),
+    result,
+  };
 };

@@ -1,18 +1,18 @@
-import { redirect } from "next/navigation";
-import { PublicGameState } from "@/app/api/games/_helpers/getPublicGameState";
+"use client";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/Button";
+import { useGameMutations } from "@/hooks/useGameMutations";
 
 export default function Home() {
+  const { createNewGame } = useGameMutations();
+  const { push } = useRouter();
   const handleStartNewGame = async () => {
-    const response = await fetch("/api/games", {
-      method: "POST",
-    });
-    const newGameState: PublicGameState = await response.json();
-    redirect(`/${newGameState.gameId}`);
+    const newGameState = await createNewGame.mutateAsync();
+    push(`/${newGameState.gameId}`);
   };
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <button>Start New Game</button>
-      <div>Deck</div>
+      <Button label="Start new game" onClick={handleStartNewGame} />
     </main>
   );
 }
