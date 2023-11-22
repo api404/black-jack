@@ -1,5 +1,3 @@
-
-
 # Black Jack
 
 The game is based on rules from this article: https://www.pinnacle.com/en/betting-articles/casino/how-to-play-blackjack/apn24f8ark6vlkzn
