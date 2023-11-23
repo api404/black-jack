@@ -1,6 +1,6 @@
 import { Card } from "@/game/Card";
 import { getPublicGameState } from "@/app/api/games/_helpers/getPublicGameState";
-import { PrivateGameState } from "@/app/schemas/privateGameState";
+import { PrivateGameState } from "@/schemas/privateGameState";
 
 describe("getPublicGameState", () => {
   it("returns dealer score only when game is over", () => {

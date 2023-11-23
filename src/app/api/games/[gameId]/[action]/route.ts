@@ -27,7 +27,7 @@ export async function POST(
   }
 
   const newGameState = BlackJackGame.play(gameState, action);
-  await saveGameState(gameId, gameState);
+  await saveGameState(gameId, newGameState);
 
   return Response.json(getPublicGameState(gameId, newGameState));
 }

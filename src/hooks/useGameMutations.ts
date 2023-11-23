@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { publicGameStateSchema } from "@/app/schemas/publicGameState";
+import { publicGameStateSchema } from "@/schemas/publicGameState";
 import { makeQueryKey } from "@/hooks/useGameState";
 import { ActionType } from "@/game/BlackJack/types";
 

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Card, Score } from "@/app/schemas/publicGameState";
+import { Card, Score } from "@/schemas/publicGameState";
 import { Card as CardComponent } from "./Card";
 
 interface Props {

@@ -1,7 +1,7 @@
 import { Card } from "@/game/Card";
 import { ResultType, resultTypes, Score } from "@/game/BlackJack/types";
 import { z } from "zod";
-import { cardSchema, scoreSchema } from "@/app/schemas/publicGameState";
+import { cardSchema, scoreSchema } from "@/schemas/publicGameState";
 
 export const privateGameStateSchema = z.object({
   playerCards: z.array(cardSchema),

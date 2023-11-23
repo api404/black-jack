@@ -3,7 +3,7 @@ import { z } from "zod";
 import {
   privateGameStateSchema,
   PrivateGameState,
-} from "@/app/schemas/privateGameState";
+} from "@/schemas/privateGameState";
 
 const { KV_REST_API_URL, KV_REST_API_TOKEN } = z
   .object({

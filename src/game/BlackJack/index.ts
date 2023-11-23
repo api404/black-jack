@@ -10,7 +10,7 @@ import {
 import { getCardValues } from "@/game/BlackJack/helpers/getCardValues";
 import { isBlackJack } from "@/game/BlackJack/helpers/isBlackJack";
 import { findBestScore } from "@/game/BlackJack/helpers/findBestScore";
-import { PrivateGameState } from "@/app/schemas/privateGameState";
+import { PrivateGameState } from "@/schemas/privateGameState";
 
 export class BlackJackGame {
   static createNewGame(): PrivateGameState {
@@ -99,13 +99,16 @@ export class BlackJackGame {
   }: Pick<PrivateGameState, "playerScore" | "dealerScore"> & {
     isGameFinished: boolean;
   }): ResultType {
-    if (playerScore === dealerScore) return "push";
-    if (playerScore === "black jack") return "player wins";
+    if (playerScore === "black jack")
+      return dealerScore === "black jack" ? "push" : "player wins";
     if (dealerScore === "black jack") return "dealer wins";
     if (playerScore > WINNING_SCORE) return "dealer wins";
     if (dealerScore > WINNING_SCORE) return "player wins";
-    if (isGameFinished)
+    if (isGameFinished) {
+      if (playerScore === dealerScore) return "push";
       return playerScore > dealerScore ? "player wins" : "dealer wins";
+    }
+
     return null;
   }
 

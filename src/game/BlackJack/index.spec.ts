@@ -3,7 +3,7 @@ import { Card } from "@/game/Card";
 import { BlackJackGame } from "@/game/BlackJack/index";
 import { Deck } from "../Deck";
 import { jest } from "@jest/globals";
-import { PrivateGameState } from "@/app/schemas/privateGameState";
+import { PrivateGameState } from "@/schemas/privateGameState";
 
 jest.mock("../Deck");
 
@@ -29,6 +29,21 @@ describe("BlackJackGame", () => {
   });
 
   const tests: BlackJackGameTest[] = [
+    {
+      gameStage: "createNewGame",
+      name: "If the player and the dealer have same score, the game continues",
+      expectedResult: null,
+      additionalChecks: (result) => {
+        expect(result.playerScore).toEqual(19);
+        expect(result.dealerScore).toEqual(19);
+      },
+      cardsOnTheTopOfTheDeck: [
+        Card.fromString("9♦"),
+        Card.fromString("10♥"),
+        Card.fromString("9♥"),
+        Card.fromString("10♣"),
+      ],
+    },
     {
       gameStage: "createNewGame",
       name: "If the player gets Blackjack and the dealer does not, the player wins",

@@ -1,5 +1,5 @@
-import { PublicGameState } from "@/app/schemas/publicGameState";
-import { PrivateGameState } from "@/app/schemas/privateGameState";
+import { PublicGameState } from "@/schemas/publicGameState";
+import { PrivateGameState } from "@/schemas/privateGameState";
 
 export const getPublicGameState = (
   gameId: string,

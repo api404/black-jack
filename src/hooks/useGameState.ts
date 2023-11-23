@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { publicGameStateSchema } from "@/app/schemas/publicGameState";
+import { publicGameStateSchema } from "@/schemas/publicGameState";
 
 interface UseGameStateParams {
   gameId: string;
