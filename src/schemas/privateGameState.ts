@@ -1,5 +1,4 @@
-import { Card } from "../models/Card";
-import { ResultType, resultTypes, Score } from "@/services/BlackJack/types";
+import { resultTypes } from "@/services/BlackJack/types";
 import { z } from "zod";
 import { cardSchema, scoreSchema } from "@/schemas/publicGameState";
 

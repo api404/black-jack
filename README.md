@@ -8,7 +8,7 @@ The game is based on rules from this [article](https://www.pinnacle.com/en/betti
 - [ESLint][eslint] - Used to enforce best practices and catch common js errors 
 - [Prettier][prettier] - used to format code
 - [React][react] - UI rendering lib 
-- [Nextjs][nextjs] - Full stack web framework(pages and REST API)
+- [Nextjs][nextjs] - Full stack web framework (pages and REST API)
 - [Vercel][vercel] - Hosting platform
 - [Jest][jest] - testing framework
 - [KV][kv] - KV(Redis) - key value database hosted on Vercel
