@@ -1,4 +1,4 @@
-import { findBestScore } from "@/game/BlackJack/helpers/findBestScore";
+import { findBestScore } from "@/services/BlackJack/findBestScore";
 
 interface FindBestScoreTest {
   scores: number[];
@@ -15,6 +15,7 @@ describe("findBestScore", () => {
     { scores: [10, 22], expectedResult: 10, isDealer: true },
     { scores: [10, 10], expectedResult: 10, isDealer: true },
     { scores: [21, 22], expectedResult: 21, isDealer: true },
+    { scores: [19, 10], expectedResult: 19, isDealer: true },
     { scores: [], expectedResult: 0, isDealer: false },
     { scores: [8], expectedResult: 8, isDealer: false },
     { scores: [1, 2], expectedResult: 2, isDealer: false },

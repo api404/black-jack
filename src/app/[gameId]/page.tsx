@@ -15,8 +15,7 @@ interface Props {
 }
 const Home: FC<Props> = ({ params: { gameId } }) => {
   const { data: game, isLoading } = useGameState({ gameId });
-  const { action, createNewGame } = useGameMutations();
-  const { push } = useRouter();
+  const { action } = useGameMutations();
 
   const handleOnHitButtonClick = async () => {
     if (!game) throw new Error("Game not found");
@@ -26,11 +25,6 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
     if (!game) throw new Error("Game not found");
     action.mutate({ gameId: game.gameId, action: "stand" });
   };
-  const handleStartNewGame = async () => {
-    const newGameState = await createNewGame.mutateAsync();
-    push(`/${newGameState.gameId}`);
-  };
-
   if (isLoading) return "loading";
   if (!game) return "not found";
   return (
@@ -45,14 +39,19 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
       </div>
       <div className="flex flex-row justify-evenly w-full ">
         {game.result ? (
-          <div className="flex flex-col gap-2 items-center">
-            <Result value={game.result} />
-            <Button label="Start new game" onClick={handleStartNewGame} />
-          </div>
+          <Result value={game.result} />
         ) : (
           <>
-            <Button label="Hit!" onClick={handleOnHitButtonClick} />
-            <Button label="Stand" onClick={handleOnStandButtonClick} />
+            <Button
+              label="Hit!"
+              className="w-24"
+              onClick={handleOnHitButtonClick}
+            />
+            <Button
+              label="Stand"
+              className="w-24"
+              onClick={handleOnStandButtonClick}
+            />
           </>
         )}
       </div>

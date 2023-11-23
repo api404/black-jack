@@ -1,5 +1,5 @@
-import { BlackJackGame } from "@/game/BlackJack";
-import { getPublicGameState } from "@/app/api/games/_helpers/getPublicGameState";
+import { BlackJackGame } from "../../../services/BlackJack";
+import { getPublicGameState } from "@/helpers/getPublicGameState";
 import { saveGameState } from "@/services/gamesStore";
 import { v4 as uuid } from "uuid";
 

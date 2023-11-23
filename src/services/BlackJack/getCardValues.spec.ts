@@ -1,5 +1,5 @@
-import { Card } from "@/game/Card";
-import { getCardValues } from "@/game/BlackJack/helpers/getCardValues";
+import { Card } from "../../models/Card";
+import { getCardValues } from "@/services/BlackJack/getCardValues";
 
 interface GetCardValuesTest {
   card: Card;

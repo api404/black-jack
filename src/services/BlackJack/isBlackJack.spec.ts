@@ -1,5 +1,5 @@
-import { Card } from "@/game/Card";
-import { isBlackJack } from "@/game/BlackJack/helpers/isBlackJack";
+import { Card } from "../../models/Card";
+import { isBlackJack } from "@/services/BlackJack/isBlackJack";
 
 interface IsBlackJackTest {
   cards: Card[];

@@ -11,7 +11,8 @@ export default function Home() {
     push(`/${newGameState.gameId}`);
   };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex flex-grow flex-col items-center justify-center gap-12 p-24">
+      <h1 className="text-8xl">Black Jack</h1>
       <Button label="Start new game" onClick={handleStartNewGame} />
     </main>
   );

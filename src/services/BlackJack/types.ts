@@ -1,5 +1,3 @@
-import { Card } from "@/game/Card";
-
 export const DEALER_MIN_SCORE = 17;
 export const WINNING_SCORE = 21;
 export const resultTypes = ["player wins", "dealer wins", "push"] as const;

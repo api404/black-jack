@@ -1,6 +1,6 @@
-import { resultTypes } from "@/game/BlackJack/types";
+import { resultTypes } from "@/services/BlackJack/types";
 import { z } from "zod";
-import { cardKinds, cardValues } from "@/game/Card/types";
+import { cardKinds, cardValues } from "@/models/Card/types";
 
 export const scoreSchema = z.number().or(z.enum(["black jack"]));
 export type Score = z.infer<typeof scoreSchema>;

@@ -3,7 +3,7 @@ import {
   CardValue,
   isCardKind,
   isCardValue,
-} from "@/game/Card/types";
+} from "@/models/Card/types";
 
 export class Card {
   constructor(

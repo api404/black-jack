@@ -1,5 +1,5 @@
-import { Deck } from "@/game/Deck/index";
-import { Card } from "@/game/Card";
+import { Deck } from "@/models/Deck/index";
+import { Card } from "@/models/Card";
 
 describe("Deck", () => {
   describe("draw", () => {

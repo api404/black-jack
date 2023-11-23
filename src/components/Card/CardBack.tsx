@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Card as CardType } from "@/game/Card";
+import { Card as CardType } from "../../models/Card";
 import clsx from "clsx";
 import { CardShape } from "@/components/Card/CardShape";
 

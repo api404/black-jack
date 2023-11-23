@@ -1,6 +1,6 @@
-import { BlackJackGame } from "@/game/BlackJack";
-import { getPublicGameState } from "@/app/api/games/_helpers/getPublicGameState";
-import { isActionType } from "@/game/BlackJack/types";
+import { BlackJackGame } from "../../../../../services/BlackJack";
+import { getPublicGameState } from "@/helpers/getPublicGameState";
+import { isActionType } from "@/services/BlackJack/types";
 import { getGameState, saveGameState } from "@/services/gamesStore";
 
 export async function POST(

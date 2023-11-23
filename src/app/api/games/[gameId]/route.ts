@@ -1,4 +1,4 @@
-import { getPublicGameState } from "@/app/api/games/_helpers/getPublicGameState";
+import { getPublicGameState } from "@/helpers/getPublicGameState";
 import { getGameState } from "@/services/gamesStore";
 
 export const GET = async (

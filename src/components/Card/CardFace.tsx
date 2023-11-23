@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Card as CardType } from "@/game/Card";
+import { Card as CardType } from "../../models/Card";
 import clsx from "clsx";
 import { CardShape } from "@/components/Card/CardShape";
 
@@ -18,7 +18,7 @@ export const CardFace: FC<Props> = ({ card, className }) => {
         })}
       >
         <p className="self-start text-sm md:text-md"> {text}</p>
-        <p className="self-center text-3xl md:text-8xl">{text}</p>
+        <p className="self-center text-3xl md:text-6xl">{text}</p>
         <p className="self-end text-sm md:text-md transform rotate-180">
           {text}
         </p>

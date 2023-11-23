@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { publicGameStateSchema } from "@/schemas/publicGameState";
 import { makeQueryKey } from "@/hooks/useGameState";
-import { ActionType } from "@/game/BlackJack/types";
+import { ActionType } from "@/services/BlackJack/types";
 
 export const useGameMutations = () => {
   const queryClient = useQueryClient();

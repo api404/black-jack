@@ -1,7 +1,7 @@
-import { ActionType, ResultType } from "@/game/BlackJack/types";
-import { Card } from "@/game/Card";
-import { BlackJackGame } from "@/game/BlackJack/index";
-import { Deck } from "../Deck";
+import { ActionType, ResultType } from "@/services/BlackJack/types";
+import { Card } from "../../models/Card";
+import { BlackJackGame } from "@/services/BlackJack/index";
+import { Deck } from "../../models/Deck";
 import { jest } from "@jest/globals";
 import { PrivateGameState } from "@/schemas/privateGameState";
 

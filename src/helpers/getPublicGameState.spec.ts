@@ -1,5 +1,5 @@
-import { Card } from "@/game/Card";
-import { getPublicGameState } from "@/app/api/games/_helpers/getPublicGameState";
+import { Card } from "../models/Card";
+import { getPublicGameState } from "@/helpers/getPublicGameState";
 import { PrivateGameState } from "@/schemas/privateGameState";
 
 describe("getPublicGameState", () => {

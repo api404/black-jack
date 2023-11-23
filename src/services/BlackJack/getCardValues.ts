@@ -1,4 +1,4 @@
-import { Card } from "@/game/Card";
+import { Card } from "../../models/Card";
 
 export const getCardValues = (card: Card) => {
   switch (card.value) {

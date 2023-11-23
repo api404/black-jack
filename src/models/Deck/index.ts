@@ -1,5 +1,5 @@
-import { Card } from "@/game/Card";
-import { cardKinds, cardValues } from "@/game/Card/types";
+import { Card } from "@/models/Card";
+import { cardKinds, cardValues } from "@/models/Card/types";
 
 export class Deck {
   private readonly cards: Card[];

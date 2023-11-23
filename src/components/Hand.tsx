@@ -16,10 +16,13 @@ export const Hand: FC<Props> = ({
   hiddenCardsNumber = 0,
   score,
 }) => {
+  const scoreValue = score == "black jack" ? "BJ" : score || "?";
   return (
     <div className="flex flex-col gap-2">
-      <div className=" flex flex-row gap-2">
-        <p>{score}</p>
+      <div className=" flex flex-row gap-2 items-center justify-center">
+        <p className="font-bold leading-8 p-2 text-center rounded-full w-12 h-12 shadow bg-white text-black">
+          {scoreValue}
+        </p>
         <p className="capitalize">{name}</p>
       </div>
       <div className="flex flex-row gap-2">
