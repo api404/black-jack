@@ -1,8 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { publicGameStateSchema } from "@/schemas/publicGameState";
-import { makeQueryKey } from "@/hooks/useGameState";
 import { ActionType } from "@/services/BlackJack/types";
+import { makeQueryKey } from "@/helpers/makeQueryKey";
 
+/**
+ * Create mutations that do API calls to update remote state and syncs it with QueryClient state
+ */
 export const useGameMutations = () => {
   const queryClient = useQueryClient();
   const createNewGame = useMutation({

@@ -16,7 +16,7 @@ export const Result: FC<Props> = ({ value, className }) => {
     <div
       className={clsx(
         className,
-        "flex flex-col gap-4 items-center p-4 rounded shadow-lg transition-all duration-500",
+        "flex flex-col gap-4 items-center p-4 rounded shadow-lg transition-all duration-1000",
         {
           "bg-blue-600": value === "player wins",
           "bg-purple-600": value === "push",

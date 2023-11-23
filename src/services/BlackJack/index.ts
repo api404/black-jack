@@ -1,5 +1,5 @@
-import { Card } from "../../models/Card";
-import { Deck } from "../../models/Deck";
+import { Card } from "@/models/Card";
+import { Deck } from "@/models/Deck";
 import {
   ActionType,
   ResultType,
