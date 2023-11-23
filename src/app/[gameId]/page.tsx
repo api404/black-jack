@@ -8,6 +8,7 @@ import { Result } from "@/components/Result";
 import { Deck } from "@/components/Deck";
 import { GameNotFound } from "@/components/GameNotFound";
 import { Loading } from "@/components/Loading";
+import { ActionType } from "@/services/BlackJack/types";
 
 interface Props {
   params: {
@@ -20,13 +21,9 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
     action: { mutate, isPending: isPerformingAction },
   } = useGameMutations();
 
-  const handleOnHitButtonClick = async () => {
+  const handleButtonClick = (action: ActionType) => async () => {
     if (!game) throw new Error("Game not found");
-    mutate({ gameId: game.gameId, action: "hit" });
-  };
-  const handleOnStandButtonClick = async () => {
-    if (!game) throw new Error("Game not found");
-    mutate({ gameId: game.gameId, action: "stand" });
+    mutate({ gameId: game.gameId, action });
   };
   if (isLoading) return <Loading />;
   if (!game) return <GameNotFound />;
@@ -55,14 +52,14 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
               label="Hit!"
               className="w-24"
               disabled={isPerformingAction}
-              onClick={handleOnHitButtonClick}
+              onClick={handleButtonClick("hit")}
             />
             {/*<Deck className="transform rotate-90" />*/}
             <Button
               label="Stand"
               className="w-24"
               disabled={isPerformingAction}
-              onClick={handleOnStandButtonClick}
+              onClick={handleButtonClick("stand")}
             />
           </>
         )}
