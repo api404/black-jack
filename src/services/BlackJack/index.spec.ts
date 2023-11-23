@@ -5,7 +5,7 @@ import { Deck } from "../../models/Deck";
 import { jest } from "@jest/globals";
 import { PrivateGameState } from "@/schemas/privateGameState";
 
-jest.mock("../Deck");
+jest.mock("../../models/Deck");
 
 type BlackJackGameTest = {
   cardsOnTheTopOfTheDeck: Card[];
@@ -121,6 +121,28 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("7♥")],
         dealerHiddenCard: Card.fromString("10♦"),
         dealerScore: 17,
+        result: null,
+      },
+    },
+    {
+      gameStage: "stand",
+      name: "If the dealer has ace and nine he should not draw a card",
+      expectedResult: "dealer wins",
+      additionalChecks: (result) => {
+        expect(result.dealerScore).toEqual(20);
+      },
+      cardsOnTheTopOfTheDeck: [Card.fromString("4♦")],
+      state: {
+        playerCards: [
+          Card.fromString("3♦"),
+          Card.fromString("9♥"),
+          Card.fromString("2♣"),
+          Card.fromString("5♣"),
+        ],
+        playerScore: 19,
+        dealerOpenCards: [Card.fromString("9♥")],
+        dealerHiddenCard: Card.fromString("A♦"),
+        dealerScore: 20,
         result: null,
       },
     },

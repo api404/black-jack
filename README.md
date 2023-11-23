@@ -1,40 +1,71 @@
 # Black Jack
 
-The game is based on rules from this article: https://www.pinnacle.com/en/betting-articles/casino/how-to-play-blackjack/apn24f8ark6vlkzn
+The game is based on rules from this [article](https://www.pinnacle.com/en/betting-articles/casino/how-to-play-blackjack/apn24f8ark6vlkzn)
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Technology
 
-## Getting Started
+- [TypeScript][ts] - used to speed up development by catching type related issues at or before build time.
+- [ESLint][eslint] - used to enforce best practices and catch common js errors 
+- [Prettier][prettier] - used to format code
+- [React][react] - UI rendering lib 
+- [Nextjs][nextjs] - Full stack web framework(pages and REST API)
+- [Vercel][vercel] - Hosting platform
+- [Jest][jest] - testing framework
+- [KV][kv] - KV(Redis) - key value database hosted on Vercel
+- [TailwindCSS][tailwindcss] - utility css classes for fast development and small css bundles
 
-First, run the development server:
+
+## Deploy
+
+The app is deployed on vercel on every commit and available at [api404-black-jack.vercel.app](https://api404-black-jack.vercel.app/)
+
+## Install
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running locally
+In order to run the app locally you need to create .env file with following variables:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+KV_URL=
+KV_REST_API_URL=
+KV_REST_API_TOKEN=
+KV_REST_API_READ_ONLY_TOKEN=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Run the development server:
 
-## Learn More
+```bash
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) with your browser to play the game.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Tests
+In order to run tests please do:
 
-## Deploy on Vercel
+```bash
+yarn test
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## REST API endpoints
+
+- `POST /api/games` Create new game
+- `GET /api/games/:gameId` Get game by id
+- `POST /api/games/:gameId/:action` Play the game. Actions can be 'hit' or 'stand'
+
+##
+
+[react]: https://reactjs.org/
+[ts]: https://www.typescriptlang.org/
+[eslint]: https://eslint.org/
+[prettier]: https://prettier.io/
+[jest]: https://jestjs.io/
+[nextjs]: https://nextjs.org/
+[vercel]: https://vercel.com/
+[tailwindcss]: https://v2.tailwindcss.com/
+[kv]: https://vercel.com/docs/storage/vercel-kv
