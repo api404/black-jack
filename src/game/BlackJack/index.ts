@@ -50,7 +50,11 @@ export class BlackJackGame {
         ...currentState.playerCards,
       ],
     });
-    const newState = { ...currentState };
+    let newState: PrivateGameState = {
+      ...currentState,
+      playerCards: [...currentState.playerCards],
+      dealerOpenCards: [...currentState.dealerOpenCards],
+    };
     if (action === "hit") {
       newState.playerCards.push(deck.draw());
       newState.playerScore = BlackJackGame.calculateHandScore(
@@ -58,7 +62,7 @@ export class BlackJackGame {
         false,
       );
       if (newState.playerScore === WINNING_SCORE) {
-        return BlackJackGame.playDealerTurn(newState, deck);
+        newState = BlackJackGame.playDealerTurn(newState, deck);
       }
       newState.result = BlackJackGame.calculateResult({
         playerScore: newState.playerScore,
@@ -66,21 +70,23 @@ export class BlackJackGame {
         isGameFinished: false,
       });
     } else {
-      return BlackJackGame.playDealerTurn(newState, deck);
+      newState = BlackJackGame.playDealerTurn(newState, deck);
+    }
+    if (newState.result) {
+      newState.dealerOpenCards.push(newState.dealerHiddenCard);
     }
     return newState;
   }
 
   private static playDealerTurn(state: PrivateGameState, deck: Deck) {
     const newState = { ...state };
-    newState.dealerOpenCards.push(newState.dealerHiddenCard);
     while (
       newState.dealerScore !== "black jack" &&
       newState.dealerScore < DEALER_MIN_SCORE
     ) {
       newState.dealerOpenCards.push(deck.draw());
       newState.dealerScore = BlackJackGame.calculateHandScore(
-        newState.dealerOpenCards,
+        [newState.dealerHiddenCard, ...newState.dealerOpenCards],
         true,
       );
     }

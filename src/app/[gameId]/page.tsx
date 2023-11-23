@@ -34,7 +34,7 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
   if (isLoading) return "loading";
   if (!game) return "not found";
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between gap-4">
+    <main className="flex flex-col flex-grow items-center justify-evenly gap-2">
       <div>
         <Hand
           name="dealer"
@@ -43,9 +43,9 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
           score={game.dealerScore}
         />
       </div>
-      <div className="flex flex-row justify-evenly gap-2 w-full ">
+      <div className="flex flex-row justify-evenly w-full ">
         {game.result ? (
-          <div className="flex flex-col gap-4 items-center">
+          <div className="flex flex-col gap-2 items-center">
             <Result value={game.result} />
             <Button label="Start new game" onClick={handleStartNewGame} />
           </div>

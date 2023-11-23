@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Card, Score } from "@/schemas/publicGameState";
 import { CardFace } from "./Card/CardFace";
 import { CardBack } from "@/components/Card/CardBack";
+import clsx from "clsx";
 
 interface Props {
   name: string;
@@ -29,7 +30,9 @@ export const Hand: FC<Props> = ({
           <CardFace
             key={`${card.value}${card.kind}`}
             card={card}
-            className={index + hiddenCardsNumber !== 0 ? "-ml-24" : ""}
+            className={clsx({
+              "-ml-24 z-0": index + hiddenCardsNumber !== 0,
+            })}
           />
         ))}
       </div>

@@ -17,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <QueryClientProvider>
-        <body className={`${inter.className} bg-green-600 p-16`}>
+        <body
+          className={`${inter.className} flex flex-col bg-green-600 min-h-screen p-2 md:p-8`}
+        >
           {children}
         </body>
       </QueryClientProvider>
