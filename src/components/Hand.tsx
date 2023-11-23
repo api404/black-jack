@@ -9,6 +9,7 @@ import { ResultType } from "@/services/BlackJack/types";
 interface Props {
   name: "dealer" | "player";
   cards: Card[];
+  displayName?: string;
   hiddenCardsNumber?: number;
   score?: Score;
   animation?: CardAnimation;
@@ -21,6 +22,7 @@ export const Hand: FC<Props> = ({
   score,
   animation,
   result,
+  displayName = name,
 }) => {
   const scoreValue = score == "black jack" ? "BJ" : score || "?";
   const isPush = result === "push";
@@ -43,7 +45,7 @@ export const Hand: FC<Props> = ({
         >
           {scoreValue}
         </p>
-        <p className="capitalize">{name}</p>
+        <p className="capitalize">{displayName}</p>
       </div>
       <div className="flex flex-row gap-2">
         {Array.from({ length: hiddenCardsNumber }).map((_, index) => (

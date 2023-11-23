@@ -16,15 +16,17 @@ interface Props {
 }
 const Home: FC<Props> = ({ params: { gameId } }) => {
   const { data: game, isLoading } = useGameState({ gameId });
-  const { action } = useGameMutations();
+  const {
+    action: { mutate, isPending: isPerformingAction },
+  } = useGameMutations();
 
   const handleOnHitButtonClick = async () => {
     if (!game) throw new Error("Game not found");
-    action.mutate({ gameId: game.gameId, action: "hit" });
+    mutate({ gameId: game.gameId, action: "hit" });
   };
   const handleOnStandButtonClick = async () => {
     if (!game) throw new Error("Game not found");
-    action.mutate({ gameId: game.gameId, action: "stand" });
+    mutate({ gameId: game.gameId, action: "stand" });
   };
   if (isLoading) return <Loading />;
   if (!game) return <GameNotFound />;
@@ -38,6 +40,7 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
         <Deck />
         <Hand
           name="dealer"
+          displayName={`dealer ${isPerformingAction ? "💭" : ""}`}
           cards={dealerOpenCards}
           hiddenCardsNumber={result ? 0 : 1}
           score={game.dealerScore}
@@ -51,12 +54,14 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
             <Button
               label="Hit!"
               className="w-24"
+              disabled={isPerformingAction}
               onClick={handleOnHitButtonClick}
             />
             {/*<Deck className="transform rotate-90" />*/}
             <Button
               label="Stand"
               className="w-24"
+              disabled={isPerformingAction}
               onClick={handleOnStandButtonClick}
             />
           </>
