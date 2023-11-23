@@ -1,13 +1,20 @@
 import { FC } from "react";
 import { Card, Score } from "@/schemas/publicGameState";
-import { Card as CardComponent } from "./Card";
+import { CardFace } from "./Card/CardFace";
+import { CardBack } from "@/components/Card/CardBack";
 
 interface Props {
   name: string;
-  cards: Array<Card | null>;
+  cards: Card[];
+  hiddenCardsNumber?: number;
   score?: Score;
 }
-export const Hand: FC<Props> = ({ name, cards, score }) => {
+export const Hand: FC<Props> = ({
+  name,
+  cards,
+  hiddenCardsNumber = 0,
+  score,
+}) => {
   return (
     <div className="flex flex-col gap-2">
       <div className=" flex flex-row gap-2">
@@ -15,11 +22,14 @@ export const Hand: FC<Props> = ({ name, cards, score }) => {
         <p className="capitalize">{name}</p>
       </div>
       <div className="flex flex-row gap-2">
+        {Array.from({ length: hiddenCardsNumber }).map((_, index) => (
+          <CardBack key={index} />
+        ))}
         {cards.map((card, index) => (
-          <CardComponent
-            key={index}
+          <CardFace
+            key={`${card.value}${card.kind}`}
             card={card}
-            className={index !== 0 ? "-ml-14" : ""}
+            className={index + hiddenCardsNumber !== 0 ? "-ml-24" : ""}
           />
         ))}
       </div>

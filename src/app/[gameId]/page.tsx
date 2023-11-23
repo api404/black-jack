@@ -1,7 +1,7 @@
 "use client";
 import { useGameState } from "@/hooks/useGameState";
 import { FC, useCallback } from "react";
-import { Card } from "@/components/Card";
+import { CardFace } from "@/components/Card/CardFace";
 import { Hand } from "@/components/Hand";
 import { Button } from "@/components/Button";
 import { useGameMutations } from "@/hooks/useGameMutations";
@@ -38,7 +38,8 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
       <div>
         <Hand
           name="dealer"
-          cards={[...(game.result ? [] : [null]), ...game.dealerOpenCards]}
+          cards={game.dealerOpenCards}
+          hiddenCardsNumber={game.result ? 0 : 1}
           score={game.dealerScore}
         />
       </div>
