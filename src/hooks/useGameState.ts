@@ -17,9 +17,15 @@ export const useGameState = ({ gameId }: UseGameStateParams) => {
       const response = await fetch(`/api/games/${gameId}`, {
         method: "GET",
       });
-
+      if (response.status === 404) {
+        return null;
+      }
+      if (!response.ok) {
+        throw new Error("Failed to fetch game");
+      }
       const gameState: unknown = await response.json();
       return publicGameStateSchema.parse(gameState);
     },
+    retry: false,
   });
 };

@@ -28,5 +28,5 @@ export const saveGameState = async (
 
 export const getGameState = async (gameId: string) => {
   const data = await kv.get(gameId);
-  return privateGameStateSchema.parse(data);
+  return data ? privateGameStateSchema.parse(data) : null;
 };

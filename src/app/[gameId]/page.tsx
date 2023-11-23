@@ -6,6 +6,8 @@ import { Button } from "@/components/Button";
 import { useGameMutations } from "@/hooks/useGameMutations";
 import { Result } from "@/components/Result";
 import { Deck } from "@/components/Deck";
+import { GameNotFound } from "@/components/GameNotFound";
+import { Loading } from "@/components/Loading";
 
 interface Props {
   params: {
@@ -24,8 +26,8 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
     if (!game) throw new Error("Game not found");
     action.mutate({ gameId: game.gameId, action: "stand" });
   };
-  if (isLoading) return "loading";
-  if (!game) return "not found";
+  if (isLoading) return <Loading />;
+  if (!game) return <GameNotFound />;
 
   const { result, playerScore, playerCards, dealerScore, dealerOpenCards } =
     game;
