@@ -26,20 +26,25 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
   };
   if (isLoading) return "loading";
   if (!game) return "not found";
+
+  const { result, playerScore, playerCards, dealerScore, dealerOpenCards } =
+    game;
+
   return (
     <main className="relative flex flex-col flex-grow items-center justify-evenly gap-2">
       <div className="flex gap-8 items-end">
         <Deck />
         <Hand
           name="dealer"
-          cards={game.dealerOpenCards}
-          hiddenCardsNumber={game.result ? 0 : 1}
+          cards={dealerOpenCards}
+          hiddenCardsNumber={result ? 0 : 1}
           score={game.dealerScore}
           animation="slide-from-left"
+          result={result}
         />
       </div>
       <div className="flex flex-row items-center justify-evenly w-full h-20">
-        {!game.result && (
+        {!result && (
           <>
             <Button
               label="Hit!"
@@ -58,13 +63,14 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
       <div>
         <Hand
           name="player"
-          cards={game.playerCards}
-          score={game.playerScore}
+          cards={playerCards}
+          score={playerScore}
           animation="slide-from-top"
+          result={result}
         />
       </div>
 
-      {!!game.result && <Result className="absolute" value={game.result} />}
+      {!!result && <Result className="absolute" value={result} />}
     </main>
   );
 };

@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { CardBack } from "@/components/Card/CardBack";
 import clsx from "clsx";
-import { className } from "postcss-selector-parser";
 
 const CARDS_TO_DISPLAY = 10;
 
