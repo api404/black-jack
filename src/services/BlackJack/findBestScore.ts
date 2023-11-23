@@ -16,9 +16,11 @@ export const findBestScore = (scores: number[], isDealer: boolean) => {
     }
     if (score < WINNING_SCORE && bestScore < WINNING_SCORE) {
       if (isDealer) {
+        // NOTE: soft hand is when ace is scored as 11
         if (bestScore === DEALER_MIN_SCORE && score < DEALER_MIN_SCORE) {
           return score;
         }
+        // NOTE: hard hand is when ace is scored as 1
         if (bestScore < DEALER_MIN_SCORE && score === DEALER_MIN_SCORE) {
           return bestScore;
         }
