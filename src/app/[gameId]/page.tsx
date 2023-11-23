@@ -1,12 +1,11 @@
 "use client";
 import { useGameState } from "@/hooks/useGameState";
-import { FC, useCallback } from "react";
-import { CardFace } from "@/components/Card/CardFace";
+import { FC } from "react";
 import { Hand } from "@/components/Hand";
 import { Button } from "@/components/Button";
 import { useGameMutations } from "@/hooks/useGameMutations";
 import { Result } from "@/components/Result";
-import { useRouter } from "next/navigation";
+import { Deck } from "@/components/Deck";
 
 interface Props {
   params: {
@@ -28,8 +27,9 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
   if (isLoading) return "loading";
   if (!game) return "not found";
   return (
-    <main className="flex flex-col flex-grow items-center justify-evenly gap-2">
-      <div>
+    <main className="relative flex flex-col flex-grow items-center justify-evenly gap-2">
+      <div className="flex gap-8 items-end">
+        <Deck />
         <Hand
           name="dealer"
           cards={game.dealerOpenCards}
@@ -37,16 +37,15 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
           score={game.dealerScore}
         />
       </div>
-      <div className="flex flex-row justify-evenly w-full ">
-        {game.result ? (
-          <Result value={game.result} />
-        ) : (
+      <div className="flex flex-row items-center justify-evenly w-full h-20">
+        {!game.result && (
           <>
             <Button
               label="Hit!"
               className="w-24"
               onClick={handleOnHitButtonClick}
             />
+            {/*<Deck className="transform rotate-90" />*/}
             <Button
               label="Stand"
               className="w-24"
@@ -58,6 +57,8 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
       <div>
         <Hand name="player" cards={game.playerCards} score={game.playerScore} />
       </div>
+
+      {!!game.result && <Result className="absolute" value={game.result} />}
     </main>
   );
 };

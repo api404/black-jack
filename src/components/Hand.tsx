@@ -34,7 +34,7 @@ export const Hand: FC<Props> = ({
             key={`${card.value}${card.kind}`}
             card={card}
             className={clsx({
-              "-ml-24 z-0": index + hiddenCardsNumber !== 0,
+              "-ml-16 md:-ml-24 z-0": index + hiddenCardsNumber !== 0,
             })}
           />
         ))}

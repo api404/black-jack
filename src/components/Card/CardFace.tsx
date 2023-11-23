@@ -8,7 +8,7 @@ interface Props {
   className?: string;
 }
 export const CardFace: FC<Props> = ({ card, className }) => {
-  const text = `${card?.value}${card?.kind}`;
+  const text = `${card.value}${card.kind}`;
   return (
     <CardShape className={className}>
       <div
@@ -17,9 +17,9 @@ export const CardFace: FC<Props> = ({ card, className }) => {
           "text-black": card.kind === "♣" || card.kind === "♠",
         })}
       >
-        <p className="self-start text-sm md:text-md"> {text}</p>
+        <p className="self-start text-md md:text-xl"> {text}</p>
         <p className="self-center text-3xl md:text-6xl">{text}</p>
-        <p className="self-end text-sm md:text-md transform rotate-180">
+        <p className="self-end text-md md:text-xl transform rotate-180">
           {text}
         </p>
       </div>
