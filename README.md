@@ -4,8 +4,8 @@ The game is based on rules from this [article](https://www.pinnacle.com/en/betti
 
 ## Technology
 
-- [TypeScript][ts] - used to speed up development by catching type related issues at or before build time.
-- [ESLint][eslint] - used to enforce best practices and catch common js errors 
+- [TypeScript][ts] - Used to speed up development by catching type related issues at or before build time.
+- [ESLint][eslint] - Used to enforce best practices and catch common js errors 
 - [Prettier][prettier] - used to format code
 - [React][react] - UI rendering lib 
 - [Nextjs][nextjs] - Full stack web framework(pages and REST API)
@@ -13,6 +13,7 @@ The game is based on rules from this [article](https://www.pinnacle.com/en/betti
 - [Jest][jest] - testing framework
 - [KV][kv] - KV(Redis) - key value database hosted on Vercel
 - [TailwindCSS][tailwindcss] - utility css classes for fast development and small css bundles
+- [ReactQuery][reactquery] - Managing remote state across components
 
 
 ## Deploy
@@ -69,3 +70,4 @@ yarn test
 [vercel]: https://vercel.com/
 [tailwindcss]: https://v2.tailwindcss.com/
 [kv]: https://vercel.com/docs/storage/vercel-kv
+[reactquery]: https://tanstack.com/query/latest
