@@ -3,18 +3,21 @@ import { Card, Score } from "@/schemas/publicGameState";
 import { CardFace } from "./Card/CardFace";
 import { CardBack } from "@/components/Card/CardBack";
 import clsx from "clsx";
+import { CardAnimation } from "@/components/Card/CardShape";
 
 interface Props {
   name: string;
   cards: Card[];
   hiddenCardsNumber?: number;
   score?: Score;
+  animation?: CardAnimation;
 }
 export const Hand: FC<Props> = ({
   name,
   cards,
   hiddenCardsNumber = 0,
   score,
+  animation,
 }) => {
   const scoreValue = score == "black jack" ? "BJ" : score || "?";
   return (
@@ -27,7 +30,7 @@ export const Hand: FC<Props> = ({
       </div>
       <div className="flex flex-row gap-2">
         {Array.from({ length: hiddenCardsNumber }).map((_, index) => (
-          <CardBack key={index} />
+          <CardBack key={index} animation={animation} />
         ))}
         {cards.map((card, index) => (
           <CardFace
@@ -36,6 +39,8 @@ export const Hand: FC<Props> = ({
             className={clsx({
               "-ml-16 md:-ml-24 z-0": index + hiddenCardsNumber !== 0,
             })}
+            animation={animation}
+            delayIndex={index}
           />
         ))}
       </div>

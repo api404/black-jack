@@ -20,6 +20,7 @@ export const Deck: FC<Props> = ({ className }) => {
           style={{
             left: -2 * (CARDS_TO_DISPLAY - (index + 1)),
           }}
+          animation="none"
         />
       ))}
     </div>

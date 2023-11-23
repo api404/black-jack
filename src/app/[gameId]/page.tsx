@@ -35,6 +35,7 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
           cards={game.dealerOpenCards}
           hiddenCardsNumber={game.result ? 0 : 1}
           score={game.dealerScore}
+          animation="slide-from-left"
         />
       </div>
       <div className="flex flex-row items-center justify-evenly w-full h-20">
@@ -55,7 +56,12 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
         )}
       </div>
       <div>
-        <Hand name="player" cards={game.playerCards} score={game.playerScore} />
+        <Hand
+          name="player"
+          cards={game.playerCards}
+          score={game.playerScore}
+          animation="slide-from-top"
+        />
       </div>
 
       {!!game.result && <Result className="absolute" value={game.result} />}

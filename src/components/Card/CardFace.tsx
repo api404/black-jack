@@ -1,16 +1,29 @@
 import { FC } from "react";
 import { Card as CardType } from "../../models/Card";
 import clsx from "clsx";
-import { CardShape } from "@/components/Card/CardShape";
+import {
+  CardAnimation,
+  CardShape,
+  CardShapeProps,
+} from "@/components/Card/CardShape";
+import { an } from "@upstash/redis/zmscore-10fd3773";
 
-interface Props {
+interface Props extends Omit<CardShapeProps, "children"> {
   card: CardType;
-  className?: string;
 }
-export const CardFace: FC<Props> = ({ card, className }) => {
+export const CardFace: FC<Props> = ({
+  card,
+  className,
+  animation,
+  delayIndex,
+}) => {
   const text = `${card.value}${card.kind}`;
   return (
-    <CardShape className={className}>
+    <CardShape
+      className={className}
+      animation={animation}
+      delayIndex={delayIndex}
+    >
       <div
         className={clsx("w-full h-full flex flex-col justify-between", {
           "text-red-600": card.kind === "♥" || card.kind === "♦",
