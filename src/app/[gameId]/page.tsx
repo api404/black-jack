@@ -42,7 +42,7 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
           hiddenCardsNumber={result ? 0 : 1}
           score={game.dealerScore}
           animation="slide-from-left"
-          result={result}
+          isWinner={result === "dealer wins"}
         />
       </div>
       <div className="flex flex-row items-center justify-evenly w-full h-20">
@@ -70,7 +70,7 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
           cards={playerCards}
           score={playerScore}
           animation="slide-from-top"
-          result={result}
+          isWinner={result === "player wins"}
         />
       </div>
 
