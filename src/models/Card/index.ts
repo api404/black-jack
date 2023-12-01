@@ -1,5 +1,6 @@
 import {
   CardKind,
+  CardString,
   CardValue,
   isCardKind,
   isCardValue,
@@ -13,7 +14,7 @@ export class Card {
   toString() {
     return `${this.value}${this.kind}`;
   }
-  public static fromString(str: `${CardValue}${CardKind}`) {
+  public static fromString(str: CardString) {
     const kind = str.slice(-1);
     const value = str.slice(0, -1);
     if (!isCardKind(kind) || !isCardValue(value)) {

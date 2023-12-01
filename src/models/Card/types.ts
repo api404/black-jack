@@ -3,6 +3,13 @@ export type CardKind = (typeof cardKinds)[number];
 export function isCardKind(str: string): str is CardKind {
   return cardKinds.includes(str as CardKind);
 }
+
+export type CardString = `${CardValue}${CardKind}`;
+export function isCardString(str: string): str is CardString {
+  const kind = str.slice(-1);
+  const value = str.slice(0, -1);
+  return isCardKind(kind) && isCardValue(value);
+}
 export const cardValues = [
   "2",
   "3",

@@ -8,7 +8,7 @@ import { PrivateGameState } from "@/schemas/privateGameState";
 jest.mock("../../models/Deck");
 
 type BlackJackGameTest = {
-  cardsOnTheTopOfTheDeck: Card[];
+  cardsOnTheTopOfTheDeck?: Card[];
   expectedResult: ResultType;
   name: string;
   additionalChecks?: (result: PrivateGameState) => void;
@@ -102,6 +102,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("3♥")],
         dealerHiddenCard: Card.fromString("A♦"),
         dealerScore: 14,
+        deck: "K♣,4♦",
         result: null,
       },
     },
@@ -121,6 +122,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("7♥")],
         dealerHiddenCard: Card.fromString("10♦"),
         dealerScore: 17,
+        deck: "4♦",
         result: null,
       },
     },
@@ -143,6 +145,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("9♥")],
         dealerHiddenCard: Card.fromString("A♦"),
         dealerScore: 20,
+        deck: "4♦",
         result: null,
       },
     },
@@ -157,6 +160,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("6♥")],
         dealerHiddenCard: Card.fromString("10♣"),
         dealerScore: 16,
+        deck: "10♥",
         result: null,
       },
     },
@@ -171,6 +175,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("6♥")],
         dealerHiddenCard: Card.fromString("10♦"),
         dealerScore: 16,
+        deck: "4♥",
         result: null,
       },
     },
@@ -189,6 +194,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("6♥")],
         dealerHiddenCard: Card.fromString("10♦"),
         dealerScore: 16,
+        deck: "10♥",
         result: null,
       },
     },
@@ -203,6 +209,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("6♥")],
         dealerHiddenCard: Card.fromString("10♦"),
         dealerScore: 16,
+        deck: "2♥",
         result: null,
       },
     },
@@ -217,6 +224,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("3♥")],
         dealerHiddenCard: Card.fromString("A♦"),
         dealerScore: 14,
+        deck: "4♦",
         result: null,
       },
     },
@@ -231,6 +239,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("3♥")],
         dealerHiddenCard: Card.fromString("10♦"),
         dealerScore: 13,
+        deck: "9♥,7♦",
         result: null,
       },
     },
@@ -245,6 +254,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("3♥")],
         dealerHiddenCard: Card.fromString("A♦"),
         dealerScore: 14,
+        deck: "7♥,7♦",
         result: null,
       },
     },
@@ -259,6 +269,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("3♥")],
         dealerHiddenCard: Card.fromString("Q♦"),
         dealerScore: 13,
+        deck: "6♥,7♦",
         result: null,
       },
     },
@@ -276,6 +287,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("3♥")],
         dealerHiddenCard: Card.fromString("A♦"),
         dealerScore: 14,
+        deck: "9♥,6♦",
         result: null,
       },
     },
@@ -293,6 +305,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("3♥")],
         dealerHiddenCard: Card.fromString("7♦"),
         dealerScore: 10,
+        deck: "5♥,7♦",
         result: null,
       },
     },
@@ -315,6 +328,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("3♥")],
         dealerHiddenCard: Card.fromString("A♦"),
         dealerScore: 14,
+        deck: "9♥,10♦",
         result: null,
       },
     },
@@ -333,6 +347,7 @@ describe("BlackJackGame", () => {
         dealerOpenCards: [Card.fromString("3♥")],
         dealerHiddenCard: Card.fromString("A♦"),
         dealerScore: 14,
+        deck: "5♥,10♦",
         result: null,
       },
     },
@@ -346,7 +361,7 @@ describe("BlackJackGame", () => {
       ...rest
     }) => {
       it(`${rest.gameStage}: ${name}`, () => {
-        cardsOnTheTopOfTheDeck.forEach((card) => {
+        cardsOnTheTopOfTheDeck?.forEach((card) => {
           drawMock.mockImplementationOnce(() => card);
         });
         const result =

@@ -14,6 +14,7 @@ export const Result: FC<Props> = ({ value, className }) => {
 
   return (
     <div
+      data-testid="result"
       className={clsx(
         className,
         "flex flex-col gap-4 items-center p-4 rounded shadow-lg transition-all delay-500 duration-500",
