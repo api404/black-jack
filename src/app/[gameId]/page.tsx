@@ -54,7 +54,6 @@ const Home: FC<Props> = ({ params: { gameId } }) => {
               disabled={isPerformingAction}
               onClick={handleButtonClick("hit")}
             />
-            {/*<Deck className="transform rotate-90" />*/}
             <Button
               label="Stand"
               className="w-24"

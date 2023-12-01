@@ -15,7 +15,7 @@ import { PrivateGameState } from "@/schemas/privateGameState";
 export class BlackJackGame {
   static createNewGame(): PrivateGameState {
     // NOTE: draw initial hands for players
-    const deck = new Deck();
+    const deck = Deck.createNewShuffledDeck();
     const playerCards = [deck.draw(), deck.draw()];
     const dealerOpenCards = [deck.draw()];
     const dealerHiddenCard = deck.draw();
@@ -37,6 +37,7 @@ export class BlackJackGame {
         dealerScore,
       },
       null,
+      deck,
     );
     return stateWithResult.result
       ? BlackJackGame.openDealersHand(stateWithResult)
@@ -63,6 +64,7 @@ export class BlackJackGame {
     const stateWithResult = BlackJackGame.getStateWithResult(
       stateAfterDealersAction,
       action,
+      deck,
     );
     // NOTE: if finished, open dealer card
     return stateWithResult.result
@@ -71,13 +73,7 @@ export class BlackJackGame {
   }
 
   private static createDeckFromState(state: PrivateGameState) {
-    return new Deck({
-      cardsToExclude: [
-        ...state.dealerOpenCards,
-        state.dealerHiddenCard,
-        ...state.playerCards,
-      ],
-    });
+    return Deck.fromString(state.deck);
   }
 
   private static playHit(state: PrivateGameState, deck: Deck) {
@@ -114,8 +110,9 @@ export class BlackJackGame {
   }
 
   private static getStateWithResult(
-    state: Omit<PrivateGameState, "result">,
+    state: Omit<PrivateGameState, "result" | "deck">,
     action: ActionType | null,
+    deck: Deck,
   ): PrivateGameState {
     const isGameFinished =
       action === "stand" ||
@@ -130,6 +127,7 @@ export class BlackJackGame {
     });
     return {
       ...state,
+      deck: deck.toString(),
       result,
     };
   }

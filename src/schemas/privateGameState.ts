@@ -9,6 +9,7 @@ export const privateGameStateSchema = z.object({
   dealerHiddenCard: cardSchema,
   dealerScore: scoreSchema,
   result: z.enum(resultTypes).nullable(),
+  deck: z.string(),
 });
 
 export type PrivateGameState = z.infer<typeof privateGameStateSchema>;
