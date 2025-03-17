@@ -30,10 +30,7 @@ yarn install
 In order to run the app locally you need to create .env file with following variables:
 
 ```
-KV_URL=
-KV_REST_API_URL=
-KV_REST_API_TOKEN=
-KV_REST_API_READ_ONLY_TOKEN=
+KV_REST_API_REDIS_URL=
 ```
 
 Run the development server:
